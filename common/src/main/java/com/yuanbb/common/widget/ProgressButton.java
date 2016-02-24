@@ -103,47 +103,87 @@ public class ProgressButton extends View {
         return super.onTouchEvent(event);
     }
 
+    /**
+     * 设置进度最大值
+     * @param max
+     */
     public void setMax(int max)
     {
         _max = max;
     }
 
+    /**
+     * 设置按钮文本
+     * @param text
+     */
     public void setText(String text)
     {
         _text = text;
     }
 
+    /**
+     * 设置按钮前景色
+     * @param color
+     */
     public  void setForeground(int color)
     {
         _foreground = color;
     }
 
+    /**
+     * 设置按钮背景色
+     * @param color
+     */
     public  void  setBackground(int color){
         _background = color;
     }
 
+    /**
+     * 设置文本颜色
+     * @param color
+     */
     public void setTextColor(int color){
         _textColor = color;
     }
 
+    /**
+     * 设置文本字体大小
+     * @param size
+     */
     public  void setTextSize(float  size){
         _textSize = size;
     }
 
+    /**
+     * 设置进度值
+     * @param progress
+     */
     public  void setProgress(int progress){
         if(progress>_max) return;
         _progress = progress;
         postInvalidate();
     }
 
+    /**
+     * 设置进度值
+     * @return
+     */
     public  int getProgress(){
         return _progress;
     }
 
+    /**
+     * 获取进度最大值
+     * @return
+     */
     public  int getMax(){
         return _max;
     }
 
+    /**
+     * 设置按钮监听
+     * @param listener
+     */
     public void setOnProgressButtonClickListener(OnProgressButtonClickListener listener)
     {
         _buttonListener = listener;
