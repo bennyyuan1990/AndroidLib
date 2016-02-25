@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ProgressButton">
-        <attr name="background" format="color|reference"/>
+        <attr name="backgroundColor" format="color|reference"/>
         <attr name="foreground" format="color|reference"/>
         <attr name="textColor" format="color|reference"/>
         <attr name="textSize" format="dimension"/>

@@ -16,4 +16,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <com.yuanbb.common.widget.ProgressButton
+        android:id="@+id/btn_Progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:text="进度条按钮" />
+
+
 </RelativeLayout>

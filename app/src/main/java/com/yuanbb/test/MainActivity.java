@@ -5,9 +5,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.yuanbb.common.widget.ProgressButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +27,30 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+
+        final ProgressButton btn = (ProgressButton) findViewById(R.id.btn_Progress);
+        btn.setOnProgressButtonClickListener(new ProgressButton.OnProgressButtonClickListener() {
+            @Override
+            public void onClickListener() {
+                new Thread() {
+                    @Override
+                    public void run() {
+
+                        while (btn.getProgress() < btn.getMax()) {
+                            try {
+                                btn.setProgress(btn.getProgress() + 5);
+
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                }.start();
             }
         });
     }
