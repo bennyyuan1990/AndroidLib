@@ -22,7 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.GridViewImageActivity"></activity>
+        <activity android:name=".activity.GridViewImageActivity" />
+        <activity
+            android:name=".activity.CustomViewActivity"
+            android:label="@string/title_activity_custom_view"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

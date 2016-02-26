@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.yuanbb.common.adapter.MyBaseAdapter;
 import com.yuanbb.common.widget.ProgressButton;
+import com.yuanbb.test.activity.CustomViewActivity;
 import com.yuanbb.test.activity.GridViewImageActivity;
 
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         List list = new ArrayList();
         list.add(new MenuItemEntity("GridView图片缩放", GridViewImageActivity.class));
+        list.add(new MenuItemEntity("自定义界面", CustomViewActivity.class));
 
         mBaseAdapter = new MyBaseAdapter<MenuItemEntity>(this, list, android.R.layout.simple_expandable_list_item_1) {
             @Override
