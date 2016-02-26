@@ -89,17 +89,19 @@ public class SwitchButton extends View implements Checkable {
             mDest = new Rect(0, 0, mWidth, mHeigth);
 
         if (mDeltX > 0) {
-            mSrc.set(mSwitchBottom.getWidth() * mDeltX / mMoveLength, 0, mSwitchBottom.getWidth() * mDeltX / mMoveLength + mSwitchBottom.getWidth(), mSwitchBottom.getHeight());
+            int sourceWidth = mSwitchBottom.getWidth() / 2;
+            mSrc.set(sourceWidth - sourceWidth * mDeltX / mMoveLength, 0, mSwitchBottom.getWidth() - sourceWidth * mDeltX / mMoveLength , mSwitchBottom.getHeight());
         } else if (mDeltX <= 0) {
-            mSrc.set(-mSwitchBottom.getWidth() * mDeltX / (mMoveLength*2), 0, mSwitchBottom.getWidth() / 2 - mSwitchBottom.getWidth() * mDeltX / mMoveLength, mSwitchBottom.getHeight());
+            int sourceWidth = mSwitchBottom.getWidth() / 2;
+            mSrc.set(-sourceWidth * mDeltX / mMoveLength, 0, sourceWidth - sourceWidth * mDeltX / mMoveLength, mSwitchBottom.getHeight());
         }
         Log.d(TAG, "mDeltX: " + mDeltX);
 
         int count = canvas.saveLayer(new RectF(mDest), null, Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG | Canvas.FULL_COLOR_LAYER_SAVE_FLAG | Canvas.CLIP_TO_LAYER_SAVE_FLAG);
         canvas.drawBitmap(mSwitchBottom, mSrc, mDest, null);
         canvas.drawBitmap(mSwitchPressed, mSrc, mDest, null);
-        canvas.drawBitmap(mSwitchFrame, mSrc, mDest, null);
-        canvas.drawBitmap(mSwitchMask, mSrc, mDest, mPaint);
+        canvas.drawBitmap(mSwitchFrame, null, mDest, null);
+        canvas.drawBitmap(mSwitchMask, null, mDest, mPaint);
         canvas.restoreToCount(count);
 
 
