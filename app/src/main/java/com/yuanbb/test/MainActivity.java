@@ -1,5 +1,6 @@
 package com.yuanbb.test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,10 +10,25 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.yuanbb.common.adapter.MyBaseAdapter;
 import com.yuanbb.common.widget.ProgressButton;
+import com.yuanbb.test.activity.GridViewImageActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListView mLvItems;
+
+    private MyBaseAdapter mBaseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +46,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        List list = new ArrayList();
+        list.add(new MenuItemEntity("GridView图片缩放", GridViewImageActivity.class));
 
+        mBaseAdapter = new MyBaseAdapter<MenuItemEntity>(this, list, android.R.layout.simple_expandable_list_item_1) {
+            @Override
+            public void setViewValue(MenuItemEntity obj, ViewHodler viewHodler) {
+                ((TextView) viewHodler.getView(android.R.id.text1)).setText(obj.mContent);
+            }
+        };
+
+        mLvItems = (ListView) findViewById(R.id.lv_Items);
+
+        mLvItems.setAdapter(mBaseAdapter);
+
+        mLvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Class clazz = ((MenuItemEntity) mBaseAdapter.getItem(position)).mClass;
+                Intent intent = new Intent(MainActivity.this, clazz);
+                startActivity(intent);
+            }
+        });
+
+        /*
         final ProgressButton btn = (ProgressButton) findViewById(R.id.btn_Progress);
         btn.setOnProgressButtonClickListener(new ProgressButton.OnProgressButtonClickListener() {
             @Override
@@ -53,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 }.start();
             }
         });
+        */
     }
 
     @Override
@@ -76,4 +116,20 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private class MenuItemEntity {
+        public MenuItemEntity() {
+        }
+
+        public MenuItemEntity(String content, Class clazz) {
+            mContent = content;
+            mClass = clazz;
+        }
+
+        private String mContent;
+        private Class mClass;
+    }
+
+
 }
