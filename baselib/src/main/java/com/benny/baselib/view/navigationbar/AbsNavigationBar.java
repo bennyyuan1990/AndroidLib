@@ -26,7 +26,7 @@ public abstract class AbsNavigationBar<T extends AbsNavigationBarParams> impleme
 
     private void initNavigationView(T params) {
         if (params.mParent == null) {
-            params.mParent = (ViewGroup) ((ViewGroup) ((Activity) params.mContext).findViewById(android.R.id.content).getRootView()).getChildAt(0);
+            params.mParent = (ViewGroup) ((ViewGroup) ((Activity) params.mContext).getWindow().getDecorView()).getChildAt(0);
         }
 
         mNavigationView = LayoutInflater.from(params.mContext).inflate(getNavigationLayoutID(), params.mParent, false);
