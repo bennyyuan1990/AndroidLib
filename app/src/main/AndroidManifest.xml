@@ -18,7 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TabLayoutActivity"></activity>
+        <activity android:name=".TabLayoutActivity" />
+        <activity
+            android:name=".FabActivity"
+            android:theme="@style/AppTheme.NoTitle" />
     </application>
 
 </manifest>

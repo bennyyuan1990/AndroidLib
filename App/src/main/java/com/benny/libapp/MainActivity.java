@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         //初始化同步状态
         drawerToggle.syncState();
-       // drawerLayout.addDrawerListener(drawerToggle);
+        // drawerLayout.addDrawerListener(drawerToggle);
 
        /* drawerLayout.addDrawerListener(new SimpleDrawerListener() {
             @Override
@@ -61,12 +61,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         });
 */
         findViewById(R.id.activity_main_tab_layout_btn).setOnClickListener(this);
+        findViewById(R.id.activity_main_fab_btn).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.activity_main_tab_layout_btn) {
             Intent intent = new Intent(this, TabLayoutActivity.class);
+            startActivity(intent);
+        } else if (view.getId() == R.id.activity_main_fab_btn) {
+            Intent intent = new Intent(this, FabActivity.class);
             startActivity(intent);
         }
     }
