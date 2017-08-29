@@ -2,18 +2,12 @@ package com.benny.libapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.DrawerLayout.DrawerListener;
-import android.support.v4.widget.DrawerLayout.SimpleDrawerListener;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Toast;
-
-import com.benny.baselib.dialog.AlertDialog;
+import android.widget.TextView;
 import com.benny.baselib.view.BaseActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -33,6 +27,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         //初始化同步状态
         drawerToggle.syncState();
@@ -59,10 +55,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
+
+         findViewById(R.id.hello_tv).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(MainActivity.this).setContentView(R.layout.dialog_test)
+                    .setOnClickListener(R.id.dialog_ok_btn, new OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .fullWidth()
+                    .fromBottom(true)
+                    .setText(R.id.dialog_tv, "内容").show();
+            }
+        });
 */
+
+        ((TextView)findViewById(R.id.activity_main_ndk)).setText(new JniTest().getText());
         findViewById(R.id.activity_main_tab_layout_btn).setOnClickListener(this);
         findViewById(R.id.activity_main_fab_btn).setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View view) {
@@ -73,5 +88,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Intent intent = new Intent(this, FabActivity.class);
             startActivity(intent);
         }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_activity, menu);
+        return super.onCreateOptionsMenu(menu);
+
     }
 }

@@ -33,6 +33,12 @@
             android:text="FAB" />
 
 
+        <TextView
+          android:id="@+id/activity_main_ndk"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent" />
+
+
     </LinearLayout>
 
 
