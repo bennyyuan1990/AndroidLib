@@ -76,6 +76,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ((TextView)findViewById(R.id.activity_main_ndk)).setText(new JniTest().getText());
         findViewById(R.id.activity_main_tab_layout_btn).setOnClickListener(this);
         findViewById(R.id.activity_main_fab_btn).setOnClickListener(this);
+        findViewById(R.id.activity_main_fmode).setOnClickListener(this);
     }
 
 
@@ -86,6 +87,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             startActivity(intent);
         } else if (view.getId() == R.id.activity_main_fab_btn) {
             Intent intent = new Intent(this, FabActivity.class);
+            startActivity(intent);
+        }else if(view.getId() ==R.id.activity_main_fmode){
+            Intent intent = new Intent(this, com.benny.fmode.MainActivity.class);
             startActivity(intent);
         }
 
