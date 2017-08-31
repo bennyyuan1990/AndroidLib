@@ -89,7 +89,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Intent intent = new Intent(this, FabActivity.class);
             startActivity(intent);
         }else if(view.getId() ==R.id.activity_main_fmode){
-            Intent intent = new Intent(this, com.benny.fmode.MainActivity.class);
+            Intent intent = new Intent(this, com.benny.fmod.MainActivity.class);
             startActivity(intent);
         }
 

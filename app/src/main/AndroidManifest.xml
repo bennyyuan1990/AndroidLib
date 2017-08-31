@@ -12,16 +12,26 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoTitle">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".TabLayoutActivity" />
+        <activity
+            android:name=".FabActivity"
+            android:theme="@style/AppTheme.NoTitle" />
+
+
+        <activity android:name="com.benny.fmod.TestActivity"
+          android:theme="@style/AppTheme.NoTitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TabLayoutActivity" />
-        <activity
-            android:name=".FabActivity"
-            android:theme="@style/AppTheme.NoTitle" />
     </application>
 
 </manifest>

@@ -150,42 +150,42 @@ bool Common_SuspendState()
 extern "C"
 {
 
-jstring Java_com_benny_fmode_MainActivity_getButtonLabel(JNIEnv *env, jobject thiz, jint index)
+jstring Java_com_benny_fmod_MainActivity_getButtonLabel(JNIEnv *env, jobject thiz, jint index)
 {
     return env->NewStringUTF(Common_BtnStr((Common_Button)index));
 }
 
-void Java_com_benny_fmode_MainActivity_buttonDown(JNIEnv *env, jobject thiz, jint index)
+void Java_com_benny_fmod_MainActivity_buttonDown(JNIEnv *env, jobject thiz, jint index)
 {
     gDownButtons |= (1 << index);
 }
 
-void Java_com_benny_fmode_MainActivity_buttonUp(JNIEnv *env, jobject thiz, jint index)
+void Java_com_benny_fmod_MainActivity_buttonUp(JNIEnv *env, jobject thiz, jint index)
 {
     gDownButtons &= ~(1 << index);
 }
 
-void Java_com_benny_fmode_MainActivity_setStateCreate(JNIEnv *env, jobject thiz)
+void Java_com_benny_fmod_MainActivity_setStateCreate(JNIEnv *env, jobject thiz)
 {
 
 }
 
-void Java_com_benny_fmode_MainActivity_setStateStart(JNIEnv *env, jobject thiz)
+void Java_com_benny_fmod_MainActivity_setStateStart(JNIEnv *env, jobject thiz)
 {
 	gSuspendState = false;
 }
 
-void Java_com_benny_fmode_MainActivity_setStateStop(JNIEnv *env, jobject thiz)
+void Java_com_benny_fmod_MainActivity_setStateStop(JNIEnv *env, jobject thiz)
 {
 	gSuspendState = true;
 }
 
-void Java_com_benny_fmode_MainActivity_setStateDestroy(JNIEnv *env, jobject thiz)
+void Java_com_benny_fmod_MainActivity_setStateDestroy(JNIEnv *env, jobject thiz)
 {
 	gQuitState = true;
 }
 
-void Java_com_benny_fmode_MainActivity_main(JNIEnv *env, jobject thiz)
+void Java_com_benny_fmod_MainActivity_main(JNIEnv *env, jobject thiz)
 {
 	gJNIEnv = env;
 	gMainActivityObject = thiz;

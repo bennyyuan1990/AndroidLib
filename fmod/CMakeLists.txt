@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 
-set(SoName myFomde)
+set(SoName fmodeVoice)
 
 set(fmode_DIR ${CMAKE_SOURCE_DIR}/libs)
 
@@ -19,6 +19,9 @@ set_target_properties(fmode  PROPERTIES IMPORTED_LOCATION ${fmode_DIR}/${ANDROID
 add_library(fmodL SHARED IMPORTED)
 set_target_properties(fmodL  PROPERTIES IMPORTED_LOCATION ${fmode_DIR}/${ANDROID_ABI}/libfmodL.so)
 
+
+
+find_library(log-lib log)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
