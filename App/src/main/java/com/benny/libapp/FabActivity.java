@@ -28,6 +28,7 @@ public class FabActivity extends AppCompatActivity {
         recyclerView.setAdapter(new MyListAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+
     }
 
 
