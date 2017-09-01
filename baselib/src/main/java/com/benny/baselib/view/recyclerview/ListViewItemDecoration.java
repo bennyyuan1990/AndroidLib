@@ -13,12 +13,12 @@ import android.view.View;
  * Created by Benny on 2017/9/1.
  */
 
-public class LinearLayoutItemDecoration extends RecyclerView.ItemDecoration {
+public class ListViewItemDecoration extends RecyclerView.ItemDecoration {
 
     private Paint mPaint;
     private Drawable mDrawable;
 
-    public LinearLayoutItemDecoration(Context context, int drawableID) {
+    public ListViewItemDecoration(Context context, int drawableID) {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
