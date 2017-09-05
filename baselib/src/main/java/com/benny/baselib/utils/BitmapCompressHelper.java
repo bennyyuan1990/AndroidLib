@@ -21,6 +21,8 @@ public class BitmapCompressHelper {
     /**
      * 质量压缩图片
      *
+     * 降低图片的质量，像素不会减少
+     *
      * @param quality 压缩质量 0-100
      */
     public static void compressImageQuality(Bitmap bmp, File outFile, int quality) {
@@ -50,34 +52,34 @@ public class BitmapCompressHelper {
     /**
      * 压缩图片尺寸
      *
+     * 通过降低图片的尺寸大小降低图片文件大小
+     *
      * @param ratio 尺寸压缩倍数
      */
     public static void compressImageSize(Bitmap bmp, File outFile, float ratio) {
-        int width = (int)(bmp.getWidth()/ratio);
-        int height = (int)(bmp.getHeight()/ratio);
-        Bitmap result = Bitmap.createBitmap(width,height, Config.ARGB_8888);
+        int width = (int) (bmp.getWidth() / ratio);
+        int height = (int) (bmp.getHeight() / ratio);
+        Bitmap result = Bitmap.createBitmap(width, height, Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
-        canvas.drawBitmap(bmp,null,new Rect(0,0,width,height),null);
+        canvas.drawBitmap(bmp, null, new Rect(0, 0, width, height), null);
 
-        compressImageQuality(result,outFile,100);
+        compressImageQuality(result, outFile, 100);
     }
 
     /**
      * 根据采样率压缩图片
-     * @param inFile
-     * @param outFile
-     * @param simpleSize
+     *
+     * 读取图片文件时，按照一定采样率加载Bitmap
+     *
+     * @param simpleSize 采样率 2的倍数
      */
-    public static void compressImageSimpleSize(String inFile, File outFile, int simpleSize){
+    public static void compressImageSimpleSize(String inFile, File outFile, int simpleSize) {
         BitmapFactory.Options options = new Options();
         options.inJustDecodeBounds = false;  //true,只加载图片的宽高等元数据信息
-        options.inSampleSize = simpleSize; //采样率
-        Bitmap bitmap = BitmapFactory.decodeFile(inFile,options);
-        compressImageQuality(bitmap,outFile,100);
+        options.inSampleSize = simpleSize; //采样率，必须是2的倍数
+        Bitmap bitmap = BitmapFactory.decodeFile(inFile, options);
+        compressImageQuality(bitmap, outFile, 100);
     }
-
-
-
 
 
 }
