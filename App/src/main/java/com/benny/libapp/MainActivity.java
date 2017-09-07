@@ -8,9 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import com.benny.baselib.skin.BaseSkinActivity;
 import com.benny.baselib.view.BaseActivity;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseSkinActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
