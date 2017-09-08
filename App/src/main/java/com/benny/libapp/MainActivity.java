@@ -74,10 +74,11 @@ public class MainActivity extends BaseSkinActivity implements View.OnClickListen
         });
 */
 
-        ((TextView)findViewById(R.id.activity_main_ndk)).setText(new JniTest().getText());
+        ((TextView) findViewById(R.id.activity_main_ndk)).setText(new JniTest().getText());
         findViewById(R.id.activity_main_tab_layout_btn).setOnClickListener(this);
         findViewById(R.id.activity_main_fab_btn).setOnClickListener(this);
         findViewById(R.id.activity_main_fmode).setOnClickListener(this);
+        findViewById(R.id.activity_main_image_selection).setOnClickListener(this);
     }
 
 
@@ -89,8 +90,11 @@ public class MainActivity extends BaseSkinActivity implements View.OnClickListen
         } else if (view.getId() == R.id.activity_main_fab_btn) {
             Intent intent = new Intent(this, FabActivity.class);
             startActivity(intent);
-        }else if(view.getId() ==R.id.activity_main_fmode){
+        } else if (view.getId() == R.id.activity_main_fmode) {
             Intent intent = new Intent(this, com.benny.fmod.MainActivity.class);
+            startActivity(intent);
+        } else if (view.getId() == R.id.activity_main_image_selection) {
+            Intent intent = new Intent(this, com.benny.baselib.image.selection.ImageSelectionActivity.class);
             startActivity(intent);
         }
 

@@ -15,6 +15,22 @@
   </style>
 
 
+  <style name="BaseStyle.NoTitle" parent="Theme.AppCompat.Light">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+
+  <style name="BaseStyle.Dark" parent="Theme.AppCompat">
+  <!--  <item name="controlBackground">@android:color/background_dark</item>
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:textColorPrimary">@android:color/white</item>-->
+  </style>
+
+  <style name="BaseStyle.Dark.NoTitle" parent="BaseStyle.Dark">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+
   <style name="BaseStyle.BaseDialog.BottomAnimation">
     <item name="android:windowExitAnimation">@anim/dialog_from_bottom_anim_out</item>
     <item name="android:windowEnterAnimation">@anim/dialog_from_bottom_anim_in</item>

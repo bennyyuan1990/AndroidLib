@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">BaseLib</string>
+  <string name="image_selection_title">图片选择</string>
 </resources>
