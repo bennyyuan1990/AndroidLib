@@ -48,7 +48,7 @@ public class ImageSelectionAdapter extends RecyclerView.Adapter<ImageSelectionAd
             Glide.with(holder.imageView.getContext())
                 .load(bean.getFileName())
                 .placeholder(R.mipmap.ic_photo_white_48dp)
-                .fitCenter()
+                .centerCrop()
                 .crossFade()
                 .into(holder.imageView);
         }
@@ -66,6 +66,12 @@ public class ImageSelectionAdapter extends RecyclerView.Adapter<ImageSelectionAd
     @Override
     public int getItemCount() {
         return (mImageData == null ? 0 : mImageData.size()) + (mTaskPhoto ? 1 : 0);
+    }
+
+
+    public void updateImage(List<ImageSelectionBean> data){
+        mImageData = data == null?new ArrayList<ImageSelectionBean>():data;
+        notifyDataSetChanged();
     }
 
 
