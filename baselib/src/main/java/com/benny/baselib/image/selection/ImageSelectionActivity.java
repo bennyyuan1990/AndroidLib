@@ -33,9 +33,9 @@ import java.util.List;
 public class ImageSelectionActivity extends AppCompatActivity {
 
 
-    private static final String EXTRA_SELECT_MAX_COUNT = "SelectMaxCount";
-    private static final String EXTRA_SELECTED_IMAGES = "SelectedImages";
-    private static final String EXTRA_TASK_PHOTO = "TaskPhoto";
+    public static final String EXTRA_SELECT_MAX_COUNT = "SelectMaxCount";
+    public static final String EXTRA_SELECTED_IMAGES = "SelectedImages";
+    public static final String EXTRA_TASK_PHOTO = "TaskPhoto";
     private static final int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
     private static String[] IMAGE_PROJECTION = {
