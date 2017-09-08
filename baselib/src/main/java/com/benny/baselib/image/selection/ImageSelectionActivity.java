@@ -18,8 +18,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.benny.baselib.R;
+import com.benny.baselib.image.selection.ImageSelectionAdapter.ImageSelectChangeListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +52,7 @@ public class ImageSelectionActivity extends AppCompatActivity {
     private List<String> mSelectImages;
     private boolean mTaskPhoto = true;
     private RecyclerView mImagesRcv;
+    private TextView mIndicatorTv;
     private ImageSelectionAdapter mImageSelectionAdapter;
 
     @Override
@@ -60,6 +63,8 @@ public class ImageSelectionActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mIndicatorTv = (TextView) findViewById(R.id.activity_image_selection_indicator_tv);
 
         Intent intent = getIntent();
         mSelectMaxCount = intent.getIntExtra(EXTRA_SELECT_MAX_COUNT, 9);
@@ -72,6 +77,15 @@ public class ImageSelectionActivity extends AppCompatActivity {
         mImagesRcv = (RecyclerView) findViewById(R.id.activity_image_selection_images_rcv);
         mImagesRcv.setLayoutManager(new GridLayoutManager(this, 4));
         mImagesRcv.setAdapter(mImageSelectionAdapter = new ImageSelectionAdapter(null, mTaskPhoto));
+        mImageSelectionAdapter.setSelectMaxCount(mSelectMaxCount);
+        mImageSelectionAdapter.setTaskPhoto(mTaskPhoto);
+        mImageSelectionAdapter.setImageSelectChangeListener(new ImageSelectChangeListener() {
+            @Override
+            public void onSelectChanged(List<ImageSelectionBean> data) {
+                int count = data == null ? 0 : data.size();
+                mIndicatorTv.setText(count + " / " + mSelectMaxCount);
+            }
+        });
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // 用户已决绝授权，可以弹出对话框解释为何需要此权限
