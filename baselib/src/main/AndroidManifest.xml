@@ -16,6 +16,8 @@
       android:label="图片选择"
       android:launchMode="singleTask"
       android:theme="@style/BaseStyle.Dark.NoTitle" />
+
+    <activity android:name=".view.ProxyActivity"/>
   </application>
 
 </manifest>

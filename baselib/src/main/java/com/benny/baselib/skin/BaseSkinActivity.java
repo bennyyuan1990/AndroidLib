@@ -55,14 +55,11 @@ public class BaseSkinActivity extends BaseActivity {
             view = super.onCreateView(parent, name, context, attrs);
         }
 
-        Log.d(TAG, "ViewName: " + name);
         if (view != null) {
-            Log.d(TAG, "onCreateView: " + view);
             int attributeCount = attrs.getAttributeCount();
             for (int i = 0; i < attributeCount; i++) {
                 String attributeName = attrs.getAttributeName(i);
                 String attributeValue = attrs.getAttributeValue(i);
-                Log.d(TAG, "attributeName: " + attributeName + " ,attributeValue: " + attributeValue);
             }
 
 

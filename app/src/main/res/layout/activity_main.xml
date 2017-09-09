@@ -46,6 +46,12 @@
       android:text="imageSelection"/>
 
 
+   <Button
+       android:id="@+id/activity_main_hook_activity"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="HookActivity"/>
+
     <TextView
       android:id="@+id/activity_main_ndk"
       android:layout_width="match_parent"
