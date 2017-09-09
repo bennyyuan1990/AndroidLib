@@ -100,7 +100,7 @@ public class MainActivity extends BaseSkinActivity implements View.OnClickListen
             Intent intent = new Intent(this, com.benny.baselib.image.selection.ImageSelectionActivity.class);
             startActivity(intent);
         } else if (view.getId() == R.id.activity_main_hook_activity) {
-            Intent intent = new Intent(this, ProxyActivity.class);
+            Intent intent = new Intent(this,TestActivity.class);
             startActivity(intent);
         }
 

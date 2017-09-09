@@ -1,19 +1,17 @@
 package com.benny.baselib.hook;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Message;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.logging.Handler;
 
 /**
  * Created by Benny on 2017/9/9.
@@ -72,10 +70,7 @@ public class ActivityHook {
     private void hookLaunchActivity() {
         try {
             Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
-            Log.d(TAG, "hookLaunchActivity: " + Arrays.toString(activityThreadClass.getDeclaredFields()));
             Method currentActivityThreadMethod = activityThreadClass.getDeclaredMethod("currentActivityThread");
-
-//            sCurrentActivityThreadField.setAccessible(true);
             Object sCurrentActivityThreadValue = currentActivityThreadMethod.invoke(null);
 
             Field mHField = activityThreadClass.getDeclaredField("mH");
@@ -112,6 +107,24 @@ public class ActivityHook {
             if (originIntent != null) {
                 intentField.set(r, originIntent);
             }
+
+
+            // 兼容AppCompatActivity报错问题
+            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+            Method currentActivityThreadMethod = activityThreadClass.getDeclaredMethod("currentActivityThread");
+            Object sCurrentActivityThreadValue = currentActivityThreadMethod.invoke(null);
+            Method getPackageManager = sCurrentActivityThreadValue.getClass().getDeclaredMethod("getPackageManager");
+            Object iPackageManager = getPackageManager.invoke(sCurrentActivityThreadValue);
+
+            Class<?> iPackageManagerClass = Class.forName("android.content.pm.IPackageManager");
+            Object proxy = Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),
+                    new Class<?>[]{iPackageManagerClass}, new PackageManagerHandler(iPackageManager));
+
+            // 获取 sPackageManager 属性
+            Field iPackageManagerField = sCurrentActivityThreadValue.getClass().getDeclaredField("sPackageManager");
+            iPackageManagerField.setAccessible(true);
+            iPackageManagerField.set(sCurrentActivityThreadValue, proxy);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,7 +141,6 @@ public class ActivityHook {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            Log.d(TAG, "invoke: " + method);
 
             if (method.getName().equals("startActivity")) {
 
@@ -149,6 +161,26 @@ public class ActivityHook {
 
             }
             return method.invoke(mActivityManager, args);
+        }
+    }
+
+    public class PackageManagerHandler implements InvocationHandler {
+        private Object mPackageManager;
+
+        public PackageManagerHandler(Object packageManager) {
+            this.mPackageManager = packageManager;
+        }
+
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            Log.d(TAG, "invoke: " + method);
+
+            if (method.getName().equals("getActivityInfo")) {
+                ComponentName componentName = new ComponentName(mContext.get(), mProxyActivityClass);
+                args[0] = componentName;
+            }
+            return method.invoke(mPackageManager, args);
         }
     }
 }
