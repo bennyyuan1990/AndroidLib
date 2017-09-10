@@ -8,4 +8,10 @@
         android:id="@+id/activity_test_arc_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <com.benny.baselib.view.text.ColorTrackTextView
+        android:id="@+id/activity_test_color_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试文本哦，ABCD,1234567890" />
 </LinearLayout>

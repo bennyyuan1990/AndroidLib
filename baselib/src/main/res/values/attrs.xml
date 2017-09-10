@@ -7,4 +7,9 @@
         <attr name="textColor" format="color|reference" />
         <attr name="textSize" format="dimension|reference" />
     </declare-styleable>
+
+
+    <declare-styleable name="ColorTrackTextView">
+        <attr name="coverColor" format="color|reference"/>
+    </declare-styleable>
 </resources>
