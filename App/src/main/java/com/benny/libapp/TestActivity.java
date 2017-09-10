@@ -5,7 +5,9 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.benny.baselib.view.list.LetterSideBar;
 import com.benny.baselib.view.progress.ArcProgress;
 import com.benny.baselib.view.text.ColorTrackTextView;
 
@@ -34,5 +36,14 @@ public class TestActivity extends AppCompatActivity {
         objectAnimator1.setRepeatCount(ValueAnimator.INFINITE);
         objectAnimator1.setRepeatMode(ValueAnimator.REVERSE);
         objectAnimator1.start();
+
+
+        LetterSideBar letterSideBar = (LetterSideBar) findViewById(R.id.activity_test_letter_side_bar);
+        letterSideBar.setOnSelectChangeListener(new LetterSideBar.OnSelectChangeListener() {
+            @Override
+            public void selectChange(String letter) {
+                Log.d("LetterSideBar", "selectChange: " + letter);
+            }
+        });
     }
 }

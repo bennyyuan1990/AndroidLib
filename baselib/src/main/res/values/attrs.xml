@@ -10,6 +10,13 @@
 
 
     <declare-styleable name="ColorTrackTextView">
-        <attr name="coverColor" format="color|reference"/>
+        <attr name="coverColor" format="color|reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="LetterSideBar">
+        <attr name="barTextColor" format="color|reference" />
+        <attr name="barTextSize" format="dimension|reference" />
+        <attr name="barPressColor" format="color|reference"/>
     </declare-styleable>
 </resources>

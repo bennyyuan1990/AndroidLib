@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/App/app.iml" filepath="$PROJECT_DIR$/App/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baselib/baselib.iml" filepath="$PROJECT_DIR$/baselib/baselib.iml" />
       <module fileurl="file://$PROJECT_DIR$/compress/compress.iml" filepath="$PROJECT_DIR$/compress/compress.iml" />
-      <module fileurl="file://$PROJECT_DIR$/compress/compress.iml" filepath="$PROJECT_DIR$/compress/compress.iml" />
       <module fileurl="file://$PROJECT_DIR$/fmod/fmod.iml" filepath="$PROJECT_DIR$/fmod/fmod.iml" />
     </modules>
   </component>

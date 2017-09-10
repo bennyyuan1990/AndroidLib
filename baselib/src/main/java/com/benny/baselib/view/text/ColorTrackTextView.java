@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import com.benny.baselib.R;
 
@@ -27,7 +26,6 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
         if (step < 0) step = 0;
         else if (step > 1) step = 1;
         this.mStep = step;
-        Log.d("ColorTrackTextView", "setStep: " + this.mStep);
         postInvalidate();
     }
 
