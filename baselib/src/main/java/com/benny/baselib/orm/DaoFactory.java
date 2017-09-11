@@ -26,13 +26,25 @@ public class DaoFactory {
     public synchronized <T extends BaseDao<M>, M> T getEntityDao(Class<T> daoClass, Class<M> entityClass) {
         BaseDao<M> baseDao = null;
         try {
-            baseDao = daoClass.newInstance();
+            if (daoClass == null) {
+                baseDao = BaseDao.class.newInstance();
+            } else {
+                baseDao = daoClass.newInstance();
+            }
             baseDao.init(entityClass, mSQLiteDatabase);
         } catch (Exception e) {
             e.printStackTrace();
-
         }
         return (T) baseDao;
+    }
+
+    public synchronized <T extends BaseDao<M>, M> T getEntityDao(Class<M> entityClass) {
+        BaseDao<M> entityDao = getEntityDao(null,entityClass);
+        if (entityDao != null) {
+            return (T) entityDao;
+        } else {
+            return null;
+        }
     }
 
 }

@@ -21,7 +21,6 @@ public class UserBean {
     private int age;
     private float money;
     private boolean isGirl;
-    private char test;
     private Date date;
 
     public String getUserName() {

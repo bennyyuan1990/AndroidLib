@@ -1,16 +1,14 @@
 package com.benny.baselib.orm;
 
 import android.database.sqlite.SQLiteDatabase;
-
 import android.support.annotation.NonNull;
+import android.support.v4.app.NavUtils;
 import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
-import android.util.Log;
 import com.benny.baselib.orm.annotation.DbColumn;
 import com.benny.baselib.orm.annotation.DbTable;
 import com.benny.baselib.orm.utils.DbTableHelper;
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -107,6 +105,43 @@ public class BaseDao<T> implements IBaseDao<T> {
 
     @Override
     public boolean insert(T value) {
+        if (value == null) {
+            return false;
+        }
+        try {
+            StringBuilder columns = new StringBuilder();
+            StringBuilder values = new StringBuilder();
+            Iterator<String> iterator = mColumnMap.keySet().iterator();
+            String fieldName;
+            String fieldValue;
+            Field field;
+            while (iterator.hasNext()) {
+                fieldName = iterator.next();
+                field = mColumnMap.get(fieldName);
+
+                if (field.get(value) == null) {
+                    continue;
+                }
+
+                columns.append("," + fieldName);
+                fieldValue = field.get(value).toString();
+
+                values.append(String.format(",'%s'", fieldValue));
+            }
+            if(columns.length()==0) return false;
+
+
+            String insertSql = String.format("INSERT INTO %s (%s) VALUES(%s)", mDbName, columns.toString().substring(1),values.toString().substring(1));
+
+            if (mSQLiteDatabase.isOpen()) {
+                mSQLiteDatabase.execSQL(insertSql);
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 

@@ -32,6 +32,11 @@ public class ExampleInstrumentedTest {
   public void testOrm()
   {
       DaoFactory daoFactory = new DaoFactory("testORM");
-      BaseDao entityDao = daoFactory.getEntityDao(BaseDao.class, UserBean.class);
+      BaseDao<UserBean> entityDao = daoFactory.getEntityDao(UserBean.class);
+
+      UserBean bean = new UserBean();
+      bean.setUserName("userName");
+      bean.setPassword("password");
+      entityDao.insert(bean);
   }
 }
