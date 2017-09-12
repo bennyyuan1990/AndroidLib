@@ -2,7 +2,6 @@ package com.benny.baselib.orm;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
-import android.support.v4.app.NavUtils;
 import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 import com.benny.baselib.orm.annotation.DbColumn;
@@ -147,6 +146,9 @@ public class BaseDao<T> implements IBaseDao<T> {
 
     @Override
     public boolean delete(T value) {
+
+
+
         return false;
     }
 

@@ -15,11 +15,11 @@ public class DaoFactory {
 
 
     public DaoFactory(String dbName) {
-        File file = new File(Environment.getExternalStorageDirectory(), "orm" + File.separator);
+        File file = new File(Environment.getExternalStorageDirectory(), "orm");
         if (!file.exists()) {
             file.mkdir();
         }
-        mDbPath = file.getAbsolutePath() + dbName + ".db";
+        mDbPath = file.getAbsolutePath() + File.separator + dbName + ".db";
         mSQLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mDbPath, null);
     }
 
@@ -39,7 +39,7 @@ public class DaoFactory {
     }
 
     public synchronized <T extends BaseDao<M>, M> T getEntityDao(Class<M> entityClass) {
-        BaseDao<M> entityDao = getEntityDao(null,entityClass);
+        BaseDao<M> entityDao = getEntityDao(null, entityClass);
         if (entityDao != null) {
             return (T) entityDao;
         } else {
