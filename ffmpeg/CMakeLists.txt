@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.4.1)
 
 set(SoName ffmpeg)
 
-set(JNI_LIBS_DIR ${CMAKE_SOURCE_DIR}/src/main/jniLibs)
+set(JNI_LIBS_DIR ${CMAKE_SOURCE_DIR}/jniLibs)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
@@ -67,7 +67,7 @@ set_target_properties(avresample
                       PROPERTIES IMPORTED_LOCATION
                       ${JNI_LIBS_DIR}/${ANDROID_ABI}/libavresample.so )
 
-include_directories(${JNI_LIBS_DIR}/include)
+include_directories("${JNI_LIBS_DIR}/include")
 
 
 
