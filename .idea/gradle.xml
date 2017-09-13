@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baselib" />
             <option value="$PROJECT_DIR$/compress" />
+            <option value="$PROJECT_DIR$/ffmpeg" />
             <option value="$PROJECT_DIR$/fmod" />
           </set>
         </option>

@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':fmod', ':compress'
+include ':app', ':baselib', ':fmod', ':compress', ':ffmpeg'
