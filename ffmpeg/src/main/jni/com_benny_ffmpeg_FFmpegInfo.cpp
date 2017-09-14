@@ -3,10 +3,8 @@
 //
 #include <stdio.h>
 
-
 //Log
 #ifdef ANDROID
-#include <jni.h>
 #include <android/log.h>
 #define LOGE(format, ...)  __android_log_print(ANDROID_LOG_ERROR, "ffmpeg", format, ##__VA_ARGS__)
 #else
@@ -120,6 +118,7 @@ JNIEXPORT jstring JNICALL Java_com_benny_ffmpeg_FFmpegInfo_getAVFilter
   //LOGE("%s", info);
 
   return env->NewStringUTF(info);
+//  return env->NewStringUTF("");
 }
 
 JNIEXPORT jstring JNICALL Java_com_benny_ffmpeg_FFmpegInfo_getConfigure

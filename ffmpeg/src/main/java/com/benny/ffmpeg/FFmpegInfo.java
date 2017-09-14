@@ -8,12 +8,12 @@ public class FFmpegInfo {
 
     static {
         System.loadLibrary("avutil");
+        System.loadLibrary("swresample");
         System.loadLibrary("avcodec");
-        System.loadLibrary("avfilter");
         System.loadLibrary("avformat");
         System.loadLibrary("swscale");
-        System.loadLibrary("swresample");
-        System.loadLibrary("avresample");
+        //System.loadLibrary("avresample");
+        System.loadLibrary("avfilter");
         System.loadLibrary("ffmpeg");
     }
 

@@ -14,6 +14,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ActivityHook.getInstance().hookStartActivity(this, ProxyActivity.class);
+       // ActivityHook.getInstance().hookStartActivity(this, ProxyActivity.class);
     }
 }

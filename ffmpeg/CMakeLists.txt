@@ -32,12 +32,6 @@ set_target_properties(avfilter
                       PROPERTIES IMPORTED_LOCATION
                       ${JNI_LIBS_DIR}/${ANDROID_ABI}/libavfilter.so )
 
-add_library(swscale
-            SHARED
-            IMPORTED )
-set_target_properties(swscale
-                      PROPERTIES IMPORTED_LOCATION
-                      ${JNI_LIBS_DIR}/${ANDROID_ABI}/libswscale.so )
 
 add_library(avformat
             SHARED
@@ -52,6 +46,14 @@ add_library(avutil
 set_target_properties(avutil
                       PROPERTIES IMPORTED_LOCATION
                       ${JNI_LIBS_DIR}/${ANDROID_ABI}/libavutil.so )
+
+
+add_library(swscale
+            SHARED
+            IMPORTED )
+set_target_properties(swscale
+                      PROPERTIES IMPORTED_LOCATION
+                      ${JNI_LIBS_DIR}/${ANDROID_ABI}/libswscale.so )
 
 add_library(swresample
             SHARED
@@ -76,5 +78,5 @@ find_library(log-lib log)
 
 target_link_libraries( # 库连接
                        ${SoName}
-                       avcodec avfilter swscale avformat avutil swresample avresample
+                       avformat avcodec swscale avutil swresample avfilter
                        ${log-lib})
