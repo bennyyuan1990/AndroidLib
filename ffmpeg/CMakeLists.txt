@@ -8,10 +8,9 @@ set(JNI_LIBS_DIR ${CMAKE_SOURCE_DIR}/jniLibs)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
-aux_source_directory(src/main/jni DIR_SRC)
+aux_source_directory(${CMAKE_SOURCE_DIR}/src/main/jni DIR_SRC)
 
-add_library(
-             ${SoName}
+add_library( ${SoName}
              SHARED
              ${DIR_SRC} )
 

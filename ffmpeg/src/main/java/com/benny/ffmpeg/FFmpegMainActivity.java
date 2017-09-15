@@ -1,5 +1,6 @@
 package com.benny.ffmpeg;
 
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
         findViewById(R.id.ffmpeg_AVFilter).setOnClickListener(this);
         findViewById(R.id.ffmpeg_AVFormat).setOnClickListener(this);
         findViewById(R.id.ffmpeg_Configure).setOnClickListener(this);
+        findViewById(R.id.ffmpeg_Decode2YUV).setOnClickListener(this);
 
         mContentTv = (TextView) findViewById(R.id.ffmpeg_Content_tv);
     }
@@ -29,14 +31,21 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
         int id = v.getId();
         if (id == R.id.ffmpeg_Protocol) {
             mContentTv.setText(FFmpegInfo.getProtocol());
-        }else if(id == R.id.ffmpeg_AVCodec){
+        } else if (id == R.id.ffmpeg_AVCodec) {
             mContentTv.setText(FFmpegInfo.getAVCodec());
-        }else if(id == R.id.ffmpeg_AVFilter){
+        } else if (id == R.id.ffmpeg_AVFilter) {
             mContentTv.setText(FFmpegInfo.getAVFilter());
-        }else if(id == R.id.ffmpeg_AVFormat){
+        } else if (id == R.id.ffmpeg_AVFormat) {
             mContentTv.setText(FFmpegInfo.getAVFormat());
-        }else if(id == R.id.ffmpeg_Configure){
+        } else if (id == R.id.ffmpeg_Configure) {
             mContentTv.setText(FFmpegInfo.getConfigure());
+        } else if (id == R.id.ffmpeg_Decode2YUV) {
+            try {
+                FFmpegCode.Decode2YUV(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv", Environment.getExternalStorageDirectory() + "/Download/Wildlife.yuv");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

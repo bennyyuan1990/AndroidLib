@@ -7,7 +7,7 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
     <Button
       android:id="@+id/ffmpeg_Protocol"
       android:layout_width="wrap_content"
@@ -37,6 +37,13 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Protocol" />
+
+
+    <Button
+      android:id="@+id/ffmpeg_Decode2YUV"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Decode2YUV"/>
   </LinearLayout>
 
 
