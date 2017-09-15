@@ -3,6 +3,10 @@ package com.benny.ffmpeg;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 public class FFmpegMainActivity extends AppCompatActivity implements OnClickListener {
 
     private TextView mContentTv;
+    private SurfaceView mSurfaceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,23 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
         findViewById(R.id.ffmpeg_AVFormat).setOnClickListener(this);
         findViewById(R.id.ffmpeg_Configure).setOnClickListener(this);
         findViewById(R.id.ffmpeg_Decode2YUV).setOnClickListener(this);
+        mSurfaceView = (SurfaceView) findViewById(R.id.ffmpeg_surfaceView);
+        mSurfaceView.getHolder().addCallback(new Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                FFmpegPlayer.play(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv", mSurfaceView.getHolder().getSurface());
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+
+            }
+        });
 
         mContentTv = (TextView) findViewById(R.id.ffmpeg_Content_tv);
     }

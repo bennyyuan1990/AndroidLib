@@ -1,11 +1,12 @@
 package com.benny.ffmpeg;
 
+import android.view.Surface;
+
 /**
  * Created by yuanbb on 2017/9/15.
  */
 
-public class FFmpegCode {
-
+public class FFmpegPlayer {
     static {
         System.loadLibrary("avutil");
         System.loadLibrary("swresample");
@@ -17,7 +18,6 @@ public class FFmpegCode {
         System.loadLibrary("ffmpeg");
     }
 
-    public static native int Decode2YUV(String inFileName,String outFileName);
 
-
+    public static native int play(String fileName,Surface surface);
 }
