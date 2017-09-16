@@ -8,14 +8,18 @@ import android.view.Surface;
 
 public class FFmpegPlayer {
     static {
-        System.loadLibrary("avutil");
-        System.loadLibrary("swresample");
-        System.loadLibrary("avcodec");
-        System.loadLibrary("avformat");
-        System.loadLibrary("swscale");
-        //System.loadLibrary("avresample");
-        System.loadLibrary("avfilter");
-        System.loadLibrary("ffmpeg");
+        try {
+            System.loadLibrary("avutil");
+            System.loadLibrary("swresample");
+            System.loadLibrary("avcodec");
+            System.loadLibrary("avformat");
+            System.loadLibrary("swscale");
+            //System.loadLibrary("avresample");
+            System.loadLibrary("avfilter");
+            System.loadLibrary("ffmpeg");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

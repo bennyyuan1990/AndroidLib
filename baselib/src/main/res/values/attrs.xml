@@ -15,7 +15,7 @@
 
 
     <declare-styleable name="LetterSideBar">
-        <attr name="barTextColor" format="color|reference" />
+        <attr name="barTextColor" format="color" />
         <attr name="barTextSize" format="dimension|reference" />
         <attr name="barPressColor" format="color|reference"/>
     </declare-styleable>

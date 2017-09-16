@@ -73,9 +73,10 @@ include_directories("${JNI_LIBS_DIR}/include")
 
 
 find_library(log-lib log)
+find_library(android-lib android)
 
 
 target_link_libraries( # 库连接
                        ${SoName}
                        avformat avcodec swscale avutil swresample avfilter
-                       ${log-lib})
+                       ${log-lib} ${android-lib})
