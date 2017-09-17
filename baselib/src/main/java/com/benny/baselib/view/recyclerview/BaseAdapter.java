@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
@@ -53,6 +55,44 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
         return mData.size();
     }
 
+    public I getItemData(int position) {
+        if (position >= mData.size()) return null;
+        return mData.get(position);
+    }
+
+    /**
+     * 清空数据
+     */
+    public void clearData() {
+        int size = mData.size();
+        mData.clear();
+        notifyItemRangeRemoved(0, size);
+    }
+
+    /**
+     * 下拉刷新重新加载数据
+     *
+     * @param newData
+     */
+    public void refreshData(List<I> newData) {
+        mData.clear();
+        mData.addAll(newData);
+        notifyItemRangeChanged(0, mData.size());
+    }
+
+    /**
+     * 末尾追加数据
+     *
+     * @param moreData
+     */
+    public void loadMoreData(List<I> moreData) {
+        int lastPosition = mData.size();
+        mData.addAll(lastPosition, moreData);
+        notifyItemRangeInserted(lastPosition, moreData.size());
+    }
+
+
+
     public class BaseViewHolder extends RecyclerView.ViewHolder {
 
         private SparseArray<View> mViews = new SparseArray<>();
@@ -70,6 +110,17 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
                 if (view != null) mViews.append(id, view);
             }
             return (T) view;
+        }
+
+        public TextView getTextView(int viewId) {
+            return getView(viewId);
+        }
+        public Button getButton(int viewId) {
+            return getView(viewId);
+        }
+
+        public ImageView getImageView(int viewId) {
+            return getView(viewId);
         }
 
         public BaseViewHolder setViewText(int id, Character text) {

@@ -1,11 +1,9 @@
-
+#include <stdio.h>
 #include "com_benny_ffmpeg_FFmpegPlayer.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <stdio.h>
 
 #include "libavcodec/avcodec.h"
 #include "libavformat/avformat.h"

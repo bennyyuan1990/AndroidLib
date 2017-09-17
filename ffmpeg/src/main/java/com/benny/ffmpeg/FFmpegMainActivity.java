@@ -28,10 +28,18 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
         findViewById(R.id.ffmpeg_Configure).setOnClickListener(this);
         findViewById(R.id.ffmpeg_Decode2YUV).setOnClickListener(this);
         mSurfaceView = (SurfaceView) findViewById(R.id.ffmpeg_surfaceView);
-        mSurfaceView.getHolder().addCallback(new Callback() {
+        /*mSurfaceView.getHolder().addCallback(new Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                FFmpegPlayer.play(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv", mSurfaceView.getHolder().getSurface());
+                final String file =Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv";
+                final Surface surface =  mSurfaceView.getHolder().getSurface();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        FFmpegPlayer.play(file,surface);
+                    }
+                });
+
             }
 
             @Override
@@ -44,7 +52,7 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
 
             }
         });
-
+*/
         mContentTv = (TextView) findViewById(R.id.ffmpeg_Content_tv);
     }
 
@@ -63,7 +71,11 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
             mContentTv.setText(FFmpegInfo.getConfigure());
         } else if (id == R.id.ffmpeg_Decode2YUV) {
             try {
-                FFmpegCode.Decode2YUV(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv", Environment.getExternalStorageDirectory() + "/Download/Wildlife.yuv");
+                final String file =Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv";
+                final Surface surface =  mSurfaceView.getHolder().getSurface();
+                FFmpegPlayer.play(file,surface);
+
+                //FFmpegCode.Decode2YUV(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv", Environment.getExternalStorageDirectory() + "/Download/Wildlife.yuv");
             } catch (Exception e) {
                 e.printStackTrace();
             }
