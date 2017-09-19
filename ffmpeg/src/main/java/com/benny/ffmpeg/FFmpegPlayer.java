@@ -1,7 +1,5 @@
 package com.benny.ffmpeg;
 
-import android.view.Surface;
-
 /**
  * Created by yuanbb on 2017/9/15.
  */
@@ -23,5 +21,5 @@ public class FFmpegPlayer {
     }
 
 
-    public static native int play(String fileName,Surface surface);
+    public static native int play(String fileName,Object surface);
 }

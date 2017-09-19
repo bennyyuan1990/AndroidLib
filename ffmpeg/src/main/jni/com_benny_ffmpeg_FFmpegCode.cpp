@@ -117,7 +117,6 @@ JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegCode_Decode2YUV
       //执行转码 --->YUV
       sws_scale(sws_ctx, (const uint8_t *const *) inFrame->data, inFrame->linesize, 0, inFrame->height,
                 yuvFrame->data, yuvFrame->linesize);
-
       int y_size = codecContext->width * codecContext->height;
       fwrite(yuvFrame->data[0], 1, y_size, fp_yuv);
       fwrite(yuvFrame->data[1], 1, y_size/4, fp_yuv);

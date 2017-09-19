@@ -1,5 +1,6 @@
 package com.benny.ffmpeg;
 
+import android.graphics.PixelFormat;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -72,6 +73,7 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
         } else if (id == R.id.ffmpeg_Decode2YUV) {
             try {
                 final String file =Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv";
+                mSurfaceView.getHolder().setFormat(PixelFormat.RGBA_8888);
                 final Surface surface =  mSurfaceView.getHolder().getSurface();
                 FFmpegPlayer.play(file,surface);
 

@@ -22,7 +22,7 @@
       android:theme="@style/AppTheme.NoTitle">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-
+H
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>

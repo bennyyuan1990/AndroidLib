@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_benny_ffmpeg_FFmpegPlayer
  * Method:    play
- * Signature: (Ljava/lang/String;Landroid/view/Surface;)I
+ * Signature: (Ljava/lang/String;Ljava/lang/Object;)I
  */
 JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_play
   (JNIEnv *, jclass, jstring, jobject);
