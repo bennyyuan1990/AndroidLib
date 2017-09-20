@@ -19,5 +19,7 @@ public class FFmpegCode {
 
     public static native int Decode2YUV(String inFileName,String outFileName);
 
+    public static native int Decode2PCM(String inFileName,String outFileName);
+
 
 }
