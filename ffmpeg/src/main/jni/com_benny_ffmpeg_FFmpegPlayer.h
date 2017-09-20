@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_play
   (JNIEnv *, jclass, jstring, jobject);
 
+/*
+ * Class:     com_benny_ffmpeg_FFmpegPlayer
+ * Method:    playAudio
+ * Signature: (Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_playAudio
+  (JNIEnv *, jclass, jstring);
+
 #ifdef __cplusplus
 }
 #endif

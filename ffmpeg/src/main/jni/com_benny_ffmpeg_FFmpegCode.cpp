@@ -242,11 +242,9 @@ JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegCode_Decode2PCM
 
       //解码音频数据
       ret = avcodec_decode_audio4(codecContext, frame, &got_frame, packet);
-      LOGD("读帧数据 %d", got_frame);
 
       //非0，表示正确解码
       if (got_frame > 0) {
-        LOGD("解码音频");
         //音频转码
         swr_convert(swrContext, &outBuffer, MAX_AUDIO_FRME_SIZE, (const uint8_t **) frame->data, frame->nb_samples);
         int outBufferSize = av_samples_get_buffer_size(NULL, outChannelNb, frame->nb_samples, outSampleFmt, 1);

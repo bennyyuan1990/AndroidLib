@@ -77,7 +77,9 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
                 final Surface surface =  mSurfaceView.getHolder().getSurface();
                // FFmpegPlayer.play(file,surface);
 
-                FFmpegCode.Decode2PCM(Environment.getExternalStorageDirectory() + "/Download/Maid with the Flaxen Hair.mp3", Environment.getExternalStorageDirectory() + "/Download/Wildlife.pcm");
+                FFmpegPlayer.playAudio(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv");
+
+                //FFmpegCode.Decode2PCM(Environment.getExternalStorageDirectory() + "/Download/Maid with the Flaxen Hair.mp3", Environment.getExternalStorageDirectory() + "/Download/Wildlife.pcm");
 
                 //FFmpegCode.Decode2YUV(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv", Environment.getExternalStorageDirectory() + "/Download/Wildlife.yuv");
             } catch (Exception e) {
