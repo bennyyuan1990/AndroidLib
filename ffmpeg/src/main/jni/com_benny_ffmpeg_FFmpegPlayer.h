@@ -12,7 +12,7 @@ extern "C" {
  * Method:    play
  * Signature: (Ljava/lang/String;Ljava/lang/Object;)I
  */
-JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_play
+JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_render
   (JNIEnv *, jclass, jstring, jobject);
 
 /*
@@ -20,7 +20,7 @@ JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_play
  * Method:    playAudio
  * Signature: (Ljava/lang/String;)I
  */
-JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_playAudio
+JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_audio
   (JNIEnv *, jclass, jstring);
 
 #ifdef __cplusplus

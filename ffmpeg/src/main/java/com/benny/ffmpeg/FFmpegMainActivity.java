@@ -77,7 +77,7 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
                 final Surface surface =  mSurfaceView.getHolder().getSurface();
                // FFmpegPlayer.play(file,surface);
 
-                FFmpegPlayer.playAudio(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv");
+                FFmpegPlayer.audio(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv");
 
                 //FFmpegCode.Decode2PCM(Environment.getExternalStorageDirectory() + "/Download/Maid with the Flaxen Hair.mp3", Environment.getExternalStorageDirectory() + "/Download/Wildlife.pcm");
 

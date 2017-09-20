@@ -30,7 +30,7 @@ extern "C" {
 
 
 JNIEXPORT jint JNICALL
-Java_com_benny_ffmpeg_FFmpegPlayer_play(JNIEnv *env, jclass jclazz, jstring fileName_,
+Java_com_benny_ffmpeg_FFmpegPlayer_render(JNIEnv *env, jclass jclazz, jstring fileName_,
                                         jobject surface) {
   const char *fileName = env->GetStringUTFChars(fileName_, NULL);
 
@@ -173,7 +173,7 @@ Java_com_benny_ffmpeg_FFmpegPlayer_play(JNIEnv *env, jclass jclazz, jstring file
 
 
 //播放音频
-JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_playAudio
+JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegPlayer_audio
     (JNIEnv *env, jclass jclazz, jstring _fileName) {
 
 

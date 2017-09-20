@@ -25,10 +25,10 @@ public class FFmpegPlayer {
     }
 
 
-    public static native int play(String fileName,Object surface);
+    public static native int render(String fileName,Object surface);
 
 
-    public static native int playAudio(String fileName);
+    public static native int audio(String fileName);
 
     /**
      * 构建AudioTrack，支持数据流方式播放声音
