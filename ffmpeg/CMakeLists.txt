@@ -71,7 +71,6 @@ set_target_properties(avresample
 include_directories("${JNI_LIBS_DIR}/include")
 
 
-
 find_library(log-lib log)
 find_library(android-lib android)
 

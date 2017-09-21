@@ -26,6 +26,7 @@ android {
     buildTypes {
         debug {
             jniDebuggable true //此句不加在真机上 debug 不受影响，但是在虚拟机上不能 debug
+            debuggable true
         }
         release {
             minifyEnabled false
