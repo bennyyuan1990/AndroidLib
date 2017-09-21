@@ -73,12 +73,14 @@ public class FFmpegMainActivity extends AppCompatActivity implements OnClickList
         } else if (id == R.id.ffmpeg_Decode2YUV) {
             try {
                 final String file =Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv";
+
+               // Environment.getExternalStorageDirectory() + "/Download/test.avi"
                 mSurfaceView.getHolder().setFormat(PixelFormat.RGBA_8888);
                 final Surface surface =  mSurfaceView.getHolder().getSurface();
                // FFmpegPlayer.play(file,surface);
 
                 FFmpegMediaPlayer mediaPlayer = new FFmpegMediaPlayer();
-                mediaPlayer.player(Environment.getExternalStorageDirectory() + "/Download/test.avi",surface);
+                mediaPlayer.player(file,surface);
 
                // FFmpegPlayer.audio(Environment.getExternalStorageDirectory() + "/Download/Wildlife.wmv");
 

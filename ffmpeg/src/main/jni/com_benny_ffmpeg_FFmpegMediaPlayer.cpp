@@ -22,6 +22,9 @@ extern "C" {
 #include <pthread.h>
 #include <unistd.h>
 
+#include <cstring>
+#include <stdlib.h>
+
 //Log
 #ifdef ANDROID
 #include <android/log.h>
@@ -84,14 +87,19 @@ int init_format_context(const char *fileName, MediaPlayer *mediaPlayer) {
   //打开输入文件
   int result = avformat_open_input(&format_ctx, fileName, NULL, NULL);
   if (result < 0) {
-    LOGE("无法打开文件:%s\n",fileName);
+    LOGE("无法打开文件:%s\n", fileName);
     return -1;
   }
 
   //查找获取视频、音频流信息
   result = avformat_find_stream_info(format_ctx, NULL);
   if (result < 0) {
-    LOGE("无法打开多媒体文件流信息\n");
+    LOGE("无法打开多媒体文件流信息:%d\n", result);
+    LOGD("%i", result);
+
+    char sz[10];
+
+
     return -1;
   }
 
@@ -224,7 +232,7 @@ void convert_audio(MediaPlayer *mediaPlayer, JNIEnv *env) {
   if (mediaPlayer->packet->stream_index == mediaPlayer->audio_stream_index) {
     int got_frame = 0;
     //解码音频数据
-    avcodec_decode_audio4(mediaPlayer->audio_codec_context,mediaPlayer->frame, &got_frame, mediaPlayer->packet);
+    avcodec_decode_audio4(mediaPlayer->audio_codec_context, mediaPlayer->frame, &got_frame, mediaPlayer->packet);
 
     //非0，表示正确解码
     if (got_frame > 0) {
@@ -232,7 +240,7 @@ void convert_audio(MediaPlayer *mediaPlayer, JNIEnv *env) {
       swr_convert(mediaPlayer->swr_context, &(mediaPlayer->out_buffer), MAX_AUDIO_FRME_SIZE, (const uint8_t **) mediaPlayer->frame->data, mediaPlayer->frame->nb_samples);
       int outBufferSize = av_samples_get_buffer_size(NULL, mediaPlayer->out_channel_layout_nb, mediaPlayer->frame->nb_samples, mediaPlayer->out_sample_format, 1);
 
-      mediaPlayer->javaVM->AttachCurrentThread(&env,NULL);
+      mediaPlayer->javaVM->AttachCurrentThread(&env, NULL);
 
       //将outBuffer缓冲区数据转换成byte数组
       jbyteArray audioSampleArray = env->NewByteArray(outBufferSize);
@@ -250,7 +258,7 @@ void convert_audio(MediaPlayer *mediaPlayer, JNIEnv *env) {
 }
 
 
-void* decode_frame_data(void *player) {
+void *decode_frame_data(void *player) {
   MediaPlayer *mediaPlayer = (MediaPlayer *) player;
   //读取每帧数据
   while (av_read_frame(mediaPlayer->in_format_context, mediaPlayer->packet) >= 0) {
@@ -302,7 +310,7 @@ JNIEXPORT jint JNICALL Java_com_benny_ffmpeg_FFmpegMediaPlayer_player
 
   pthread_t thread;
   //
-  pthread_create(&thread,NULL,decode_frame_data,(void *)mediaPlayer);
+  //pthread_create(&thread,NULL,decode_frame_data,(void *)mediaPlayer);
 
 
   (env)->ReleaseStringUTFChars(_fileName, infileName);
