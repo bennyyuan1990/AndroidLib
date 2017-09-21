@@ -22,8 +22,6 @@ extern "C" {
 #include <pthread.h>
 #include <unistd.h>
 
-#include <cstring>
-#include <stdlib.h>
 
 //Log
 #ifdef ANDROID
@@ -96,9 +94,6 @@ int init_format_context(const char *fileName, MediaPlayer *mediaPlayer) {
   if (result < 0) {
     LOGE("无法打开多媒体文件流信息:%d\n", result);
     LOGD("%i", result);
-
-    char sz[10];
-
 
     return -1;
   }
