@@ -1,5 +1,9 @@
 package com.benny.baselib.view.recyclerview;
 
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -12,9 +16,11 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Scroller;
 import android.widget.TextView;
 import com.benny.baselib.R;
 
@@ -31,6 +37,8 @@ public class CardSlideListView extends FrameLayout {
     private int mHeaderHeight;
     private TextView mHeaderTv;
     private RecyclerView mListRv;
+    private int mInitialOffset;
+    private boolean isAnimation = false;
 
     public int getHeaderHeight() {
         return mHeaderHeight;
@@ -67,6 +75,7 @@ public class CardSlideListView extends FrameLayout {
 
         mHeaderTv.setText(mHeaderTitle);
         mHeaderTv.setBackgroundColor(mHeaderBackground);
+
     }
 
 
@@ -76,6 +85,43 @@ public class CardSlideListView extends FrameLayout {
         if (mHeaderHeight == 0 || h != oldh) {
             mHeaderHeight = mHeaderTv.getMeasuredHeight();
         }
+    }
+
+
+    /**
+     * 重置初始位置
+     */
+    public void resetInitialPosition() {
+        if (getTop() > mInitialOffset && !isAnimation) {
+            isAnimation = true;
+            ObjectAnimator animator = ObjectAnimator.ofInt(this, "top", getTop(), mInitialOffset).setDuration(500);
+            animator.addListener(new AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    isAnimation = false;
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+                    isAnimation = false;
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+            animator.start();
+        }
+    }
+
+    public void setInitialOffset(int offset) {
+        mInitialOffset = offset;
     }
 
 
@@ -115,6 +161,7 @@ public class CardSlideListView extends FrameLayout {
                 int offset = preChild.getTop() + preChild.getHeaderHeight();
                 mInitialOffset = offset;
                 child.offsetTopAndBottom(offset);
+                child.setInitialOffset(offset);
             }
 
             return true;
@@ -132,6 +179,19 @@ public class CardSlideListView extends FrameLayout {
                 }
             }
             return preChild;
+        }
+
+        private CardSlideListView getNextChild(CoordinatorLayout parent, CardSlideListView child) {
+            CardSlideListView nextChild = null;
+            int childIndex = parent.indexOfChild(child);
+            for (int i = childIndex + 1; i < parent.getChildCount(); i++) {
+                View childAt = parent.getChildAt(i);
+                if (childAt instanceof CardSlideListView) {
+                    nextChild = (CardSlideListView) childAt;
+                    break;
+                }
+            }
+            return nextChild;
         }
 
 
@@ -154,10 +214,21 @@ public class CardSlideListView extends FrameLayout {
 
         @Override
         public void onNestedScroll(CoordinatorLayout coordinatorLayout, CardSlideListView child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+            Log.d(TAG, "dyConsumed: " + dyConsumed);
+            Log.d(TAG, "dyUnconsumed: " + dyUnconsumed);
+
+            //ListView滑到最底部，下一个CardSlide向上滑动
+            if (dyConsumed == 0 && dyUnconsumed > 0) {
+                CardSlideListView nextChild = getNextChild(coordinatorLayout, child);
+                if (nextChild != null) {
+                    nextChild.resetInitialPosition();
+                }
+            }
+            if (mInitialOffset == 0) {
+                return;
+            }
             scroll(child, dyUnconsumed, mInitialOffset, child.getHeight() + mInitialOffset - child.getHeaderHeight());
         }
-
-
 
 
         private int scroll(CardSlideListView child, int dy, int minOffset, int maxOffset) {
