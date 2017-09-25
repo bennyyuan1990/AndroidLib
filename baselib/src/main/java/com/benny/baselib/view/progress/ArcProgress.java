@@ -41,7 +41,7 @@ public class ArcProgress extends View {
     }
 
     private void init(Context context, @Nullable AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(R.styleable.ArcProgress);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.ArcProgress);
         mOutColor = typedArray.getColor(R.styleable.ArcProgress_outColor, mOutColor);
         mInColor = typedArray.getColor(R.styleable.ArcProgress_inColor, mInColor);
         mBorderWidth = typedArray.getDimension(R.styleable.ArcProgress_arcBorderWidth, mBorderWidth);

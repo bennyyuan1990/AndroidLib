@@ -81,6 +81,7 @@ public class MainActivity extends BaseSkinActivity implements View.OnClickListen
         findViewById(R.id.activity_main_image_selection).setOnClickListener(this);
         findViewById(R.id.activity_main_hook_activity).setOnClickListener(this);
         findViewById(R.id.activity_main_ffmpeg_activity).setOnClickListener(this);
+        findViewById(R.id.activity_main_card_slide_activity).setOnClickListener(this);
     }
 
 
@@ -103,6 +104,9 @@ public class MainActivity extends BaseSkinActivity implements View.OnClickListen
             startActivity(intent);
         }else if(view.getId() == R.id.activity_main_ffmpeg_activity){
             Intent intent = new Intent(this,com.benny.ffmpeg.FFmpegMainActivity.class);
+            startActivity(intent);
+        }else if(view.getId() == R.id.activity_main_card_slide_activity){
+            Intent intent = new Intent(this,CardSlideListViewActivity.class);
             startActivity(intent);
         }
 

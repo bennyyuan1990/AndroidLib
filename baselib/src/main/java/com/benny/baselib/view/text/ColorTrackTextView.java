@@ -45,7 +45,7 @@ public class ColorTrackTextView extends android.support.v7.widget.AppCompatTextV
     private void init(Context context, AttributeSet attrs) {
         mPaint = new Paint(getPaint());
 
-        TypedArray typedArray = context.obtainStyledAttributes(R.styleable.ColorTrackTextView);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.ColorTrackTextView);
         mCoverColor = typedArray.getColor(R.styleable.ColorTrackTextView_coverColor, mCoverColor);
         typedArray.recycle();
 

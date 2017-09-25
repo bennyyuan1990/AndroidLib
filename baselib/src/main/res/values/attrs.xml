@@ -19,4 +19,10 @@
         <attr name="barTextSize" format="dimension|reference" />
         <attr name="barPressColor" format="color|reference"/>
     </declare-styleable>
+
+
+    <declare-styleable name="CardSlideListView">
+        <attr name="headerTitle" format="string|reference"/>
+        <attr name="headerBackground" format="color|reference"/>
+    </declare-styleable>
 </resources>

@@ -44,14 +44,14 @@ public class LetterSideBar extends View {
 
     public LetterSideBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init(context, attrs);
     }
 
-    private void init(Context context) {
+    private void init(Context context, AttributeSet attrs) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setDither(true);
 
-        TypedArray typedArray = context.obtainStyledAttributes(R.styleable.LetterSideBar);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LetterSideBar);
         mTextColor = typedArray.getColor(R.styleable.LetterSideBar_barTextColor, mTextColor);
         mTextSize = typedArray.getDimension(R.styleable.LetterSideBar_barTextSize, mTextSize);
         mPressColor = typedArray.getColor(R.styleable.LetterSideBar_barPressColor, mPressColor);
@@ -94,8 +94,9 @@ public class LetterSideBar extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 mPrePressLetter = null;
-                if (mOnSelectChangeListener != null)
+                if (mOnSelectChangeListener != null) {
                     mOnSelectChangeListener.selectChange(mPrePressLetter);
+                }
                 postInvalidate();
                 break;
             default:
@@ -106,11 +107,14 @@ public class LetterSideBar extends View {
 
     private void checkPress(float x, float y) {
         int index = (int) ((y - getPaddingTop()) / mItemHeight);
-        if (index >= mLetter.length) index = -1;
+        if (index >= mLetter.length) {
+            index = -1;
+        }
 
         if (index < 0) {
-            if (mOnSelectChangeListener != null && mPrePressLetter != null)
+            if (mOnSelectChangeListener != null && mPrePressLetter != null) {
                 mOnSelectChangeListener.selectChange(null);
+            }
             mPrePressLetter = null;
             postInvalidate();
             return;
@@ -118,13 +122,15 @@ public class LetterSideBar extends View {
 
         if (mLetter[index] != mPrePressLetter) {
             mPrePressLetter = mLetter[index];
-            if (mOnSelectChangeListener != null)
+            if (mOnSelectChangeListener != null) {
                 mOnSelectChangeListener.selectChange(mPrePressLetter);
+            }
             postInvalidate();
         }
     }
 
     public interface OnSelectChangeListener {
+
         void selectChange(String letter);
     }
 

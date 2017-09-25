@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.benny.baselib.view.recyclerview.BaseAdapter.BaseViewHolder;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by Benny on 2017/9/1.
  */
 
-public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> extends RecyclerView.Adapter<T> {
+public abstract class BaseAdapter<I> extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<I> mData;
     private SparseArray<WeakReference<View.OnClickListener>> mClickListeners = new SparseArray<>();
@@ -24,6 +25,7 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
 
     public BaseAdapter(View itemView, List<I> data) {
         mData = data == null ? new ArrayList<I>() : data;
+        mItemView = itemView;
     }
 
 
@@ -33,21 +35,22 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
     }
 
     @Override
-    public T onCreateViewHolder(ViewGroup parent, int viewType){
-        T viewHolder = onCreateCustomViewHolder(parent, viewType);
-        if(viewHolder == null) viewHolder = (T) new BaseViewHolder(mItemView);
-        return  viewHolder;
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        BaseViewHolder viewHolder = onCreateCustomViewHolder(parent, viewType);
+        if (viewHolder == null) {
+            viewHolder = new BaseViewHolder(mItemView);
+        }
+        return viewHolder;
     }
 
-    @Override
-    public void onBindViewHolder(T holder, int position) {
-        onBindViewData(holder, mData.get(position));
+    public void onBindViewHolder(BaseViewHolder holder, int position) {
+        onBindViewData(holder,getItemData(position));
     }
 
-    public abstract void onBindViewData(T holder,I data);
-    
-    public T onCreateCustomViewHolder(ViewGroup parent, int viewType){
-        return  null;
+    public abstract void onBindViewData(BaseViewHolder holder, I data);
+
+    protected BaseViewHolder onCreateCustomViewHolder(ViewGroup parent, int viewType) {
+        return null;
     }
 
     @Override
@@ -56,7 +59,9 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
     }
 
     public I getItemData(int position) {
-        if (position >= mData.size()) return null;
+        if (position >= mData.size()) {
+            return null;
+        }
         return mData.get(position);
     }
 
@@ -71,8 +76,6 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
 
     /**
      * 下拉刷新重新加载数据
-     *
-     * @param newData
      */
     public void refreshData(List<I> newData) {
         mData.clear();
@@ -82,8 +85,6 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
 
     /**
      * 末尾追加数据
-     *
-     * @param moreData
      */
     public void loadMoreData(List<I> moreData) {
         int lastPosition = mData.size();
@@ -92,8 +93,7 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
     }
 
 
-
-    public class BaseViewHolder extends RecyclerView.ViewHolder {
+    public static class BaseViewHolder extends RecyclerView.ViewHolder {
 
         private SparseArray<View> mViews = new SparseArray<>();
 
@@ -107,7 +107,9 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
             View view = mViews.get(id);
             if (view == null) {
                 view = itemView.findViewById(id);
-                if (view != null) mViews.append(id, view);
+                if (view != null) {
+                    mViews.append(id, view);
+                }
             }
             return (T) view;
         }
@@ -115,6 +117,7 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
         public TextView getTextView(int viewId) {
             return getView(viewId);
         }
+
         public Button getButton(int viewId) {
             return getView(viewId);
         }
@@ -123,16 +126,20 @@ public abstract class BaseAdapter<T extends BaseAdapter.BaseViewHolder, I> exten
             return getView(viewId);
         }
 
-        public BaseViewHolder setViewText(int id, Character text) {
+        public BaseViewHolder setViewText(int id, CharSequence text) {
             View view = getView(id);
-            if (view != null || view instanceof TextView) ((TextView) view).setText(text);
+            if (view != null || view instanceof TextView) {
+                ((TextView) view).setText(text);
+            }
             return this;
         }
 
         public BaseViewHolder setChildOnClickListener(int id, View.OnClickListener listener) {
             View view = getView(id);
-            if (view != null) view.setOnClickListener(listener);
-            return  this;
+            if (view != null) {
+                view.setOnClickListener(listener);
+            }
+            return this;
         }
 
 

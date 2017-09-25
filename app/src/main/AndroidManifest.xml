@@ -7,7 +7,6 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
@@ -15,14 +14,14 @@
     android:name=".MyApplication"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:vmSafeMode="true"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    android:vmSafeMode="true">
     <activity
       android:name=".MainActivity"
       android:theme="@style/AppTheme.NoTitle">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-H
+        H
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
@@ -30,17 +29,19 @@ H
     <activity
       android:name=".FabActivity"
       android:theme="@style/AppTheme.NoTitle" />
-
-
     <activity
       android:name="com.benny.fmod.TestActivity"
       android:theme="@style/AppTheme.NoTitle">
-      <!-- <intent-filter>
+
+      <!--
+       <intent-filter>
            <action android:name="android.intent.action.MAIN" />
 
            <category android:name="android.intent.category.LAUNCHER" />
-       </intent-filter>-->
+       </intent-filter>
+            -->
     </activity>
+    <activity android:name=".CardSlideListViewActivity"></activity>
   </application>
 
 </manifest>
