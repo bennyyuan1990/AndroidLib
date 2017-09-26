@@ -7,28 +7,28 @@
   tools:context="com.benny.libapp.CardSlideListViewActivity">
 
 
-  <com.benny.baselib.view.recyclerview.CardSlideListView
+  <com.benny.baselib.view.recyclerview.SlideCardListView
     android:id="@+id/activity_card_slide_list1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:headerBackground="#ff0000"
     app:headerTitle="标题 1" />
 
-  <com.benny.baselib.view.recyclerview.CardSlideListView
+  <com.benny.baselib.view.recyclerview.SlideCardListView
     android:id="@+id/activity_card_slide_list2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:headerBackground="#00ff00"
     app:headerTitle="标题 2" />
 
-  <com.benny.baselib.view.recyclerview.CardSlideListView
+  <com.benny.baselib.view.recyclerview.SlideCardListView
     android:id="@+id/activity_card_slide_list3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:headerBackground="#0000ff"
     app:headerTitle="标题 3" />
 
-  <com.benny.baselib.view.recyclerview.CardSlideListView
+  <com.benny.baselib.view.recyclerview.SlideCardListView
     android:id="@+id/activity_card_slide_list4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

@@ -9,27 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.benny.baselib.view.recyclerview.BaseAdapter;
-import com.benny.baselib.view.recyclerview.CardSlideListView;
+import com.benny.baselib.view.recyclerview.SlideCardListView;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CardSlideListViewActivity extends AppCompatActivity {
 
 
-    private CardSlideListView mCardSlideListView1;
-    private CardSlideListView mCardSlideListView2;
-    private CardSlideListView mCardSlideListView3;
-    private CardSlideListView mCardSlideListView4;
+    private SlideCardListView mCardSlideListView1;
+    private SlideCardListView mCardSlideListView2;
+    private SlideCardListView mCardSlideListView3;
+    private SlideCardListView mCardSlideListView4;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_slide_list_view);
-        mCardSlideListView1 = (CardSlideListView) findViewById(R.id.activity_card_slide_list1);
-        mCardSlideListView2 = (CardSlideListView) findViewById(R.id.activity_card_slide_list2);
-        mCardSlideListView3 = (CardSlideListView) findViewById(R.id.activity_card_slide_list3);
-        mCardSlideListView4 = (CardSlideListView) findViewById(R.id.activity_card_slide_list4);
+        mCardSlideListView1 = (SlideCardListView) findViewById(R.id.activity_card_slide_list1);
+        mCardSlideListView2 = (SlideCardListView) findViewById(R.id.activity_card_slide_list2);
+        mCardSlideListView3 = (SlideCardListView) findViewById(R.id.activity_card_slide_list3);
+        mCardSlideListView4 = (SlideCardListView) findViewById(R.id.activity_card_slide_list4);
 
         ArrayList<String> list = new ArrayList<>();
 

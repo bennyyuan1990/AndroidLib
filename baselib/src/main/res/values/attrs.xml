@@ -21,7 +21,7 @@
     </declare-styleable>
 
 
-    <declare-styleable name="CardSlideListView">
+    <declare-styleable name="SlideCardListView">
         <attr name="headerTitle" format="string|reference"/>
         <attr name="headerBackground" format="color|reference"/>
     </declare-styleable>
