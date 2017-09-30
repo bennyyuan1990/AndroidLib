@@ -41,7 +41,8 @@
        </intent-filter>
             -->
     </activity>
-    <activity android:name=".CardSlideListViewActivity"></activity>
+    <activity android:name=".CardSlideListViewActivity" />
+    <activity android:name=".DataBindingActivity"/>
   </application>
 
 </manifest>

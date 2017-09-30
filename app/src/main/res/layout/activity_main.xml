@@ -65,6 +65,13 @@
       android:layout_height="wrap_content"
       android:text="CardSlideListView"/>
 
+
+    <Button
+      android:id="@+id/activity_main_data_binding_activity"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="DataBinding"/>
+
     <TextView
       android:id="@+id/activity_main_ndk"
       android:layout_width="match_parent"
