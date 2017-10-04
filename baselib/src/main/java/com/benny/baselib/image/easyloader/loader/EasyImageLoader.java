@@ -19,6 +19,10 @@ public class EasyImageLoader {
 
     private static EasyImageLoader mInstance;
 
+    public ImageLoaderConfig getImageLoaderConfig() {
+        return mImageLoaderConfig;
+    }
+
     private EasyImageLoader() {
 
     }

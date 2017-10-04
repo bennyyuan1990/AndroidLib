@@ -25,6 +25,19 @@ public class ImageLoaderConfig {
      */
     private int mThreadCount = Runtime.getRuntime().availableProcessors();
 
+
+    public BitmapCache getBitmapCache() {
+        return mBitmapCache;
+    }
+
+    public LoadPolicy getLoadPolicy() {
+        return mLoadPolicy;
+    }
+
+    public int getThreadCount() {
+        return mThreadCount;
+    }
+
     private static class Builder {
         private ImageLoaderConfig mConfig;
         private DisplayConfig mDisplayConfig;
