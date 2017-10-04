@@ -1,10 +1,12 @@
 package com.benny.baselib.image.easyloader.loader;
 
+import android.graphics.Bitmap;
 import android.text.style.EasyEditSpan;
 import android.widget.ImageView;
 
 import com.benny.baselib.image.easyloader.config.DisplayConfig;
 import com.benny.baselib.image.easyloader.config.ImageLoaderConfig;
+import com.benny.baselib.image.easyloader.request.BitmapRequest;
 import com.benny.baselib.image.easyloader.request.RequestQueue;
 
 /**
@@ -29,6 +31,7 @@ public class EasyImageLoader {
 
     private EasyImageLoader(ImageLoaderConfig imageLoaderConfig) {
         this.mImageLoaderConfig = imageLoaderConfig;
+        this.mRequestQueue = new RequestQueue();
     }
 
 
@@ -52,17 +55,23 @@ public class EasyImageLoader {
     }
 
 
-    public void displayImage(ImageView imageView,String uri){
+    public void displayImage(ImageView imageView, String url) {
 
     }
 
-    public void displayImage(ImageView imageView, String uri, DisplayConfig config,ImageLoadListener listener){
+    public void displayImage(ImageView imageView, String url, DisplayConfig config, ImageLoadListener listener) {
 
+        //构造请求参数
+        BitmapRequest request = new BitmapRequest(imageView, url, config, listener);
+        //添加到请求队列中
+        mRequestQueue.addRequest(request);
     }
 
 
-    public static interface  ImageLoadListener{
+    public interface ImageLoadListener {
 
+
+        void onCompleted(ImageView imageView, Bitmap bitmap, String url);
     }
 
 }

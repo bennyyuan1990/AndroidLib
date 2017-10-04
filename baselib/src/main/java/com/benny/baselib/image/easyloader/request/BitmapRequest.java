@@ -10,6 +10,7 @@ import java.lang.ref.WeakReference;
 import java.util.Comparator;
 
 /**
+ * 图片加载请求参数
  * Created by Benny on 2017/10/4.
  */
 
@@ -31,7 +32,7 @@ public class BitmapRequest implements Comparator<BitmapRequest> {
     private String mUrlMD5;
 
 
-    private  DisplayConfig mDisplayConfig;
+    private DisplayConfig mDisplayConfig;
     /**
      * 图片加载监听
      */

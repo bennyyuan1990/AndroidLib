@@ -5,6 +5,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 图片加载请求队列
  * Created by Benny on 2017/10/4.
  */
 
