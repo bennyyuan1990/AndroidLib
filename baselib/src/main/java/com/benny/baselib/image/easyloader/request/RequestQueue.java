@@ -27,6 +27,7 @@ public class RequestQueue {
 
     public RequestQueue(int threadCount) {
         this.mThreadCount = threadCount;
+        start();
     }
 
     /**
