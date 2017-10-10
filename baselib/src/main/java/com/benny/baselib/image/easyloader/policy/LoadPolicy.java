@@ -7,5 +7,5 @@ import com.benny.baselib.image.easyloader.request.BitmapRequest;
  */
 
 public interface LoadPolicy {
-    int compareto(BitmapRequest request1, BitmapRequest request2);
+    int compareTo(BitmapRequest request1, BitmapRequest request2);
 }

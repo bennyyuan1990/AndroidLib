@@ -25,10 +25,12 @@ public class RequestQueue {
 
     private AtomicInteger mSerialNo = new AtomicInteger(0);
 
+    public RequestQueue(int threadCount) {
+        this.mThreadCount = threadCount;
+    }
+
     /**
      * 添加图片请求队列
-     *
-     * @param request
      */
     public void addRequest(BitmapRequest request) {
         if (!mQueue.contains(request)) {
@@ -44,13 +46,43 @@ public class RequestQueue {
      */
     public void start() {
 
+        stop();
+        startDispatchers();
+    }
+
+    /**
+     * 开启转发器
+     */
+    private void startDispatchers() {
+        mDispatchers = new RequestDispatcher[mThreadCount];
+        for (int i = 0; i < mThreadCount; i++) {
+            RequestDispatcher q = new RequestDispatcher(mQueue);
+            mDispatchers[i] = q;
+            mDispatchers[i].start();
+        }
     }
 
     /**
      * 暂停请求
      */
     public void stop() {
+        if (mDispatchers == null || mDispatchers.length == 0) {
+            return;
+        }
 
+        for (int i = 0, count = mDispatchers.length; i < count; i++) {
+            try {
+                RequestDispatcher q = mDispatchers[i];
+                if (q != null && q.isAlive()) {
+                    q.stop();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            mDispatchers[i] = null;
+        }
+        mDispatchers = null;
     }
 
 }

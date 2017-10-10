@@ -10,11 +10,11 @@ public class DisplayConfig {
     /**
      * 正在加载中时 显示图片
      */
-    public int mLoadingImage = -1;
+    public int loadingImage = -1;
 
     /**
      * 加载失败时 显示图片
      */
-    public int mFailedImage = -1;
+    public int failedImage = -1;
 
 }
