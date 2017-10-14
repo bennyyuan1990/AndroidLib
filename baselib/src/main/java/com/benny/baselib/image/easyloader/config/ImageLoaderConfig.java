@@ -1,7 +1,10 @@
 package com.benny.baselib.image.easyloader.config;
 
 import com.benny.baselib.image.easyloader.cache.BitmapCache;
+import com.benny.baselib.image.easyloader.cache.DoubleCache;
+import com.benny.baselib.image.easyloader.cache.MemoryCache;
 import com.benny.baselib.image.easyloader.policy.LoadPolicy;
+import com.benny.baselib.image.easyloader.policy.SerialPolicy;
 
 /**
  * 图片加载策略配置
@@ -9,7 +12,11 @@ import com.benny.baselib.image.easyloader.policy.LoadPolicy;
  */
 
 public class ImageLoaderConfig {
+
     private ImageLoaderConfig() {
+        mDisplayConfig = new DisplayConfig();
+        mLoadPolicy = new SerialPolicy();
+        mBitmapCache = MemoryCache.getInstance();
     }
 
     /**
@@ -26,6 +33,8 @@ public class ImageLoaderConfig {
     private int mThreadCount = Runtime.getRuntime().availableProcessors();
 
 
+    private DisplayConfig mDisplayConfig;
+
     public BitmapCache getBitmapCache() {
         return mBitmapCache;
     }
@@ -38,9 +47,14 @@ public class ImageLoaderConfig {
         return mThreadCount;
     }
 
+    public DisplayConfig getDisplayConfig() {
+        return mDisplayConfig;
+    }
+
     private static class Builder {
+
         private ImageLoaderConfig mConfig;
-        private DisplayConfig mDisplayConfig;
+
 
         public Builder() {
             mConfig = new ImageLoaderConfig();
@@ -63,12 +77,12 @@ public class ImageLoaderConfig {
 
 
         public Builder setLoadingImage(int loadingImage) {
-            mDisplayConfig.mLoadingImage = loadingImage;
+            mConfig.mDisplayConfig.loadingImage = loadingImage;
             return this;
         }
 
         public Builder setFailedImage(int failedImage) {
-            mDisplayConfig.mFailedImage = failedImage;
+            mConfig.mDisplayConfig.failedImage = failedImage;
             return this;
         }
     }

@@ -1,5 +1,9 @@
 package com.benny.baselib.image.easyloader.request;
 
+
+import android.text.TextUtils;
+import com.benny.baselib.image.easyloader.loader.Loader;
+import com.benny.baselib.image.easyloader.loader.LoaderManager;
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -18,12 +22,28 @@ public class RequestDispatcher extends Thread {
 
     @Override
     public void run() {
-         while (!isInterrupted()){
-             try {
-                 BitmapRequest bitmapRequest = mRequestQueue.take();
-             }catch (Exception e){
-                 e.printStackTrace();
-             }
-         }
+        while (!isInterrupted()) {
+            try {
+                BitmapRequest bitmapRequest = mRequestQueue.take();
+
+                String schema = parseSchema(bitmapRequest.getUrl());
+
+                LoaderManager.getInstance().getLoader(schema)
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private String parseSchema(String url) {
+        if (TextUtils.isEmpty(url)) {
+            return null;
+        }
+
+        if (url.contains("://")) {
+            return url.split("://")[0];
+        }
+        return null;
     }
 }

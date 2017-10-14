@@ -1,20 +1,20 @@
 package com.benny.baselib.image.easyloader.request;
 
+import android.support.annotation.NonNull;
 import android.widget.ImageView;
-
 import com.benny.baselib.image.easyloader.config.DisplayConfig;
 import com.benny.baselib.image.easyloader.loader.EasyImageLoader;
+import com.benny.baselib.image.easyloader.loader.EasyImageLoader.ImageLoadListener;
 import com.benny.baselib.image.easyloader.policy.LoadPolicy;
-
+import com.benny.baselib.utils.EncryptHelper;
 import java.lang.ref.WeakReference;
-import java.util.Comparator;
 
 /**
  * 图片加载请求参数
  * Created by Benny on 2017/10/4.
  */
 
-public class BitmapRequest implements Comparator<BitmapRequest> {
+public class BitmapRequest implements Comparable<BitmapRequest> {
 
     /**
      * 加载策略
@@ -42,8 +42,6 @@ public class BitmapRequest implements Comparator<BitmapRequest> {
 
     /**
      * 请求序列号
-     *
-     * @return
      */
     public int getSerialNo() {
         return mSerialNo;
@@ -53,22 +51,48 @@ public class BitmapRequest implements Comparator<BitmapRequest> {
         this.mSerialNo = serialNo;
     }
 
+    public ImageView getImageView() {
+        if (mImageView != null && mImageView.get() != null) {
+            return mImageView.get();
+        }
+        return null;
+    }
+
+    public String getUrl() {
+        return mUrl;
+    }
+
+    public String getUrlMD5() {
+        return mUrlMD5;
+    }
+
+    public ImageLoadListener getImageLoadListener() {
+        return mImageLoadListener;
+    }
+
     public BitmapRequest(ImageView imageView, String url, DisplayConfig displayConfig, EasyImageLoader.ImageLoadListener imageLoadListener) {
         this.mImageView = new WeakReference<>(imageView);
         imageView.setTag(url);
         this.mUrl = url;
+        this.mUrlMD5 = EncryptHelper.MD5(url);
         this.mImageLoadListener = imageLoadListener;
         this.mDisplayConfig = displayConfig;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         BitmapRequest that = (BitmapRequest) o;
 
-        if (mSerialNo != that.mSerialNo) return false;
+        if (mSerialNo != that.mSerialNo) {
+            return false;
+        }
         return mLoadPolicy != null ? mLoadPolicy.equals(that.mLoadPolicy) : that.mLoadPolicy == null;
 
     }
@@ -82,15 +106,9 @@ public class BitmapRequest implements Comparator<BitmapRequest> {
 
     /**
      * 处理请求加载优先级
-     *
-     * @param o1
-     * @param o2
-     * @return
      */
-
     @Override
-    public int compare(BitmapRequest o1, BitmapRequest o2) {
-        return mLoadPolicy.compareto(o1, o2);
+    public int compareTo(@NonNull BitmapRequest o) {
+        return  mLoadPolicy.compareTo(this, o);
     }
-
 }

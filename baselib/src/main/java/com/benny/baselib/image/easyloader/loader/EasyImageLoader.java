@@ -31,7 +31,7 @@ public class EasyImageLoader {
 
     private EasyImageLoader(ImageLoaderConfig imageLoaderConfig) {
         this.mImageLoaderConfig = imageLoaderConfig;
-        this.mRequestQueue = new RequestQueue();
+        this.mRequestQueue = new RequestQueue(imageLoaderConfig.getThreadCount());
     }
 
 
