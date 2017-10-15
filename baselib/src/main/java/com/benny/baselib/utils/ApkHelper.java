@@ -2,6 +2,8 @@ package com.benny.baselib.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import java.io.File;
 
@@ -25,5 +27,22 @@ public class ApkHelper {
         context.startActivity(intent);
     }
 
+
+    /**
+     * 获取应用程序版本号
+     * @param context
+     * @return
+     */
+    public static String getVersionName(Context context){
+        String versioName = "1.0.0";
+        PackageManager pm = context.getPackageManager();
+        try {
+            PackageInfo pinfo = pm.getPackageInfo(context.getPackageName(),0);
+            versioName = pinfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versioName;
+    }
 
 }
